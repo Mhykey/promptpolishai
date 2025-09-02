@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login / Signup - PromptPolish.ai</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <header>
+    <nav>
+      <h1>PromptPolish.ai</h1>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="login.html" class="active">Login / Signup</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section id="login-hero">
+    <h2>Login or Signup</h2>
+    <p>Join to save your prompt history and unlock more features!</p>
+  </section>
+
+  <section id="auth-form">
+    <div class="auth-card">
+      <form id="auth-form-element" autocomplete="off">
+        <label for="email">Email:</label>
+        <input type="email" id="email" required>
+        <label for="password">Password:</label>
+        <input type="password" id="password" required>
+        
+        <button type="submit" id="signup-btn">Signup</button>
+        <button type="button" id="login-btn">Login</button>
+      </form>
+      <p class="auth-note">Already have an account? Use the Login button.</p>
+    </div>
+    <!-- Toast container -->
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 PromptPolish.ai. Built with innovation and energy.</p>
+  </footer>
+
+  <!-- Supabase CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const SUPABASE_URL = "https://uzrmqlmgdvdezvonqyoq.supabase.co";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV6cm1xbG1nZHZkZXp2b25xeW9xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY0MjkyODksImV4cCI6MjA3MjAwNTI4OX0.8f9FKe-FbkU3RqeSxJk9uHc3ooqSivsyezmayUxlQyY";
+    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const authForm = document.getElementById("auth-form-element");
+      const signupBtn = document.getElementById("signup-btn");
+      const loginBtn = document.getElementById("login-btn");
+
+      // Prevent default form submission
+      authForm.addEventListener("submit", (e) => e.preventDefault());
+
+      // SIGNUP
+      signupBtn.addEventListener("click", async (e) => {
+        e.preventDefault();
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value.trim();
+
+        if (!email || !password) {
+          alert("⚠️ Please fill in email and password.");
+          return;
+        }
+
+        const { error } = await supabase.auth.signUp({ email, password });
+
+        if (error) {
+          alert("Signup failed: " + error.message);
+        } else {
+          alert("✅ Signup successful! Please check your email to confirm.");
+        }
+      });
+
+      // LOGIN with session check
+      loginBtn.addEventListener("click", async (e) => {
+        e.preventDefault();
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value.trim();
+
+        if (!email || !password) {
+          alert("⚠️ Please fill in email and password.");
+          return;
+        }
+
+        const { error } = await supabase.auth.signInWithPassword({ email, password });
+
+        if (error) {
+          alert("Login failed: " + error.message);
+          return;
+        }
+
+        // Wait until Supabase confirms the session
+        let tries = 0;
+        let user = null;
+        while (!user && tries < 10) {
+          const { data } = await supabase.auth.getUser();
+          user = data.user;
+          if (!user) {
+            await new Promise(r => setTimeout(r, 300));
+          }
+          tries++;
+        }
+
+        if (user) {
+          alert("🔐 Welcome back, " + email + "!");
+          window.location.href = "index.html";
+        } else {
+          alert("⚠️ Login session not established. Please try again.");
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact - PromptPolish.ai</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <header>
+    <nav class="navbar">
+      <h1 class="logo">PromptPolish.ai</h1>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+        <li><a href="login.html" id="login-btn">Login/Signup</a></li>
+        <li><a href="#" id="logout-btn" style="display:none;">Logout</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section id="contact-hero">
+    <h2>Contact Us</h2>
+    <p>Got questions, feedback, or ideas? We're here to help—reach out anytime!</p>
+  </section>
+
+  <!-- Contact Form -->
+  <section id="contact-form">
+    <h2>Send Us a Message</h2>
+    <form action="http://localhost:3000/contact" method="post" class="contact-form">
+      <label for="name">Your Name:</label>
+      <input type="text" id="name" name="name" required>
+      
+      <label for="email">Your Email:</label>
+      <input type="email" id="email" name="email" required>
+      
+      <label for="message">Your Message:</label>
+      <textarea id="message" name="message" rows="5" required></textarea>
+      
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <!-- Additional Info -->
+  <section id="contact-info">
+    <h2>Other Ways to Connect</h2>
+    <p>Email: support@promptpolish.ai</p>
+    <p>Follow us on social media for updates and tips!</p>
+    <ul>
+      <li><a href="https://x.com/promptpolish">X (Twitter)</a></li>
+      <li><a href="https://linkedin.com/company/promptpolish">LinkedIn</a></li>
+    </ul>
+  </section>
+
+  <div id="toast"></div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 PromptPolish.ai. Built with innovation and energy.</p>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="script.js"></script>
+</body>
+</html>

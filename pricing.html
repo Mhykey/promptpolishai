@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Pricing - PromptPolish.ai</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Paystack Inline Script -->
+  <script src="https://js.paystack.co/v1/inline.js"></script>
+</head>
+<body>
+  <!-- Navbar -->
+  <header>
+    <nav>
+      <h1>PromptPolish.ai</h1>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="pricing.html" class="active">Pricing</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+</li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="pricing-hero">
+    <h2>Choose the Plan That Fits You</h2>
+    <p>Whether you're just getting started or want advanced features, we’ve got the right plan for you.</p>
+  </section>
+
+  <!-- Pricing Plans -->
+  <section id="pricing-plans">
+    <div class="plan">
+      <h3>Free</h3>
+      <p><strong>₦0 / month</strong></p>
+      <ul>
+        <li>✅ 5 prompt polishes per day</li>
+        <li>✅ Access to Formal & Fun styles</li>
+        <li>❌ No premium styles</li>
+        <li>❌ No history saving</li>
+      </ul>
+     <button onclick="window.location.href='login.html'">Get Started</button>
+
+    </div>
+
+    <div class="plan popular">
+      <h3>Pro</h3>
+      <p><strong>₦499 / month</strong></p>
+      <ul>
+        <li>✅ Unlimited prompt polishes</li>
+        <li>✅ Access to all styles (Formal, Fun, Persuasive, Concise, Creative)</li>
+        <li>✅ Save your prompt history</li>
+        <li>✅ Priority support</li>
+      </ul>
+      <button onclick="payWithPaystackPro()">Subscribe</button>
+    </div>
+
+    <div class="plan">
+      <h3>Team</h3>
+      <p><strong>₦999 / month</strong></p>
+      <ul>
+        <li>✅ Everything in Pro</li>
+        <li>✅ Up to 5 team members</li>
+        <li>✅ Shared workspace</li>
+        <li>✅ Admin controls</li>
+      </ul>
+      <button onclick="payWithPaystackTeam()">Subscribe</button>
+    </div>
+  </section>
+
+  <!-- Comparison Table -->
+  <section id="comparison">
+    <h2>Compare Plans</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Features</th>
+          <th>Free</th>
+          <th>Pro</th>
+          <th>Team</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Prompt Polishes</td>
+          <td>5 per day</td>
+          <td>Unlimited</td>
+          <td>Unlimited</td>
+        </tr>
+        <tr>
+          <td>Available Styles</td>
+          <td>Formal, Fun</td>
+          <td>All styles</td>
+          <td>All styles</td>
+        </tr>
+        <tr>
+          <td>History Saving</td>
+          <td>No</td>
+          <td>Yes</td>
+          <td>Yes</td>
+        </tr>
+        <tr>
+          <td>Team Members</td>
+          <td>—</td>
+          <td>—</td>
+          <td>Up to 5</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq">
+    <h2>Frequently Asked Questions</h2>
+
+    <h3>Can I try Pro before subscribing?</h3>
+    <p>Yes! You can try all features with a free trial (coming soon in hackathon demo).</p>
+
+    <h3>What happens if I cancel?</h3>
+    <p>You’ll keep access until the end of your billing period, then downgrade to Free.</p>
+
+    <h3>Can I switch plans anytime?</h3>
+    <p>Absolutely. You can upgrade or downgrade whenever you want.</p>
+
+    <h3>What payment methods do you support?</h3>
+    <p>We support credit and debit cards, PayPal, and regional options like Paystack for Nigeria.</p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 PromptPolish.ai. All rights reserved.</p>
+  </footer>
+
+  <!-- Paystack Payment Scripts -->
+  <script>
+    // 🔑 Replace with your real Paystack PUBLIC key
+    const paystackPublicKey = "pk_test_f72d6b44a6973e549f62a89728f85f62d8279144";
+
+    function payWithPaystackPro() {
+      var handler = PaystackPop.setup({
+        key: paystackPublicKey,
+        email: "customer@email.com", // Replace dynamically with logged-in user's email
+        amount: 499 * 100, // Paystack accepts kobo, so multiply dollars by 100
+        currency: "NGN",   // Use "NGN" for Naira
+        callback: function(response) {
+          alert("Payment successful! Transaction ref: " + response.reference);
+          // TODO: send 'response.reference' to your backend for verification
+        },
+        onClose: function() {
+          alert("Transaction was not completed, window closed.");
+        }
+      });
+      handler.openIframe();
+    }
+
+    function payWithPaystackTeam() {
+      var handler = PaystackPop.setup({
+        key: paystackPublicKey,
+        email: "customer@email.com",
+        amount: 999 * 100,
+        currency: "NGN",
+        callback: function(response) {
+          alert("Payment successful! Transaction ref: " + response.reference);
+          // TODO: send 'response.reference' to your backend for verification
+        },
+        onClose: function() {
+          alert("Transaction was not completed, window closed.");
+        }
+      });
+      handler.openIframe();
+    }
+  </script>
+</body>
+</html>

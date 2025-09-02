@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PromptPolish.ai</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <h1 class="logo">PromptPolish.ai</h1>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="login.html" id="login-btn">Login/Signup</a></li>
+        <li><a href="#" id="logout-btn" style="display:none;">Logout</a></li>
+      </ul>
+    </nav>
+    <p class="tagline">Polish your AI prompts for better learning results!</p>
+  </header>
+
+  <main id="home">
+    <section class="tool-section">
+      <textarea id="input-prompt" placeholder="Paste your rough prompt here... e.g., 'explain python'"></textarea>
+      
+      <select id="style-select">
+        <option value="formal">Formal (Free)</option>
+        <option value="fun">Fun (Free)</option>
+        <option value="persuasive" disabled>Persuasive (Premium)</option>
+        <option value="concise" disabled>Concise (Premium)</option>
+        <option value="creative" disabled>Creative (Premium)</option>
+      </select>
+      
+      <button id="generate-btn">Generate</button>
+
+      <div id="output">
+        <h2>Polished Prompt:</h2>
+        <p id="polished-text"></p>
+        <button id="copy-btn">Copy</button>
+      </div>
+
+      <div id="history"></div>
+      <button id="subscribe-btn" style="display:none;">Subscribe for Unlimited ($4.99/mo)</button>
+    </section>
+  </main>
+
+  <div id="toast"></div>
+
+  <footer>
+    <p>© 2025 PromptPolish.ai. Crafted with innovation and energy.</p>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="script.js"></script>
+</body>
+</html>
