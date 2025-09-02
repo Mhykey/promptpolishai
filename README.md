@@ -1,7 +1,10 @@
-# promptpolishai
-#Hackathon
 
-# PromptPolish.ai
+
+
+# promptpolishai
+
+[Link](https://promptpolish-eight.vercel.app/)]
+
 
 Polish rough prompts into clear, powerful instructions — faster, cleaner, and more creative.
 
@@ -31,6 +34,10 @@ root/
 ├─ .gitignore         # ignore node_modules, .env, etc
 └─ README.md
 ```
+
+
+Live Demo
+[Deployed link:](https://promptpolish-eight.vercel.app/)]
 
 
 ## Getting Started
